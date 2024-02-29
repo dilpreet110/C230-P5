@@ -56,6 +56,8 @@ function corners_and_mouse_loop(){
 }
 
 
+
+
 function corners_and_mouse(){
   //draw some circles near each of the four corners and connect some lines from there to the mouse position
   fill(255)
