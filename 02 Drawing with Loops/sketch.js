@@ -8,13 +8,31 @@ let xPos , yPos;
 
 function setup() {
   createCanvas(400, 400);
-  xPos = [width*0.05 , width*0.95 , width*0.05 , width*0.95  ];
-  yPos = [height*0.95 , height*0.95 , height*0.05 , height*0.05  ];
+  xPos=[];
+  yPos=[];
+  initloops();
+  
+
+  // xPos = [width*0.05 , width*0.95 , width*0.05 , width*0.95  ];
+  // yPos = [height*0.95 , height*0.95 , height*0.05 , height*0.05  ];
 }
 
 function draw() {
   background(220);
   corners_and_mouse_loop();
+  
+}
+
+function initloops(){
+  for(let x= 10; x<width; x+=40){
+    xPos.push(x);
+    yPos.push(height,0);
+  }
+  for(let y= 10; y<width; y+=40){
+    xPos.push(width,0);
+    yPos.push(y);
+  }
+
 }
 
 
@@ -32,6 +50,7 @@ function corners_and_mouse_loop(){
     line(x,y,mouseX,mouseY);
     circle(mouseX,mouseY,20);
     i++;
+    
   }
 
 }
