@@ -42,7 +42,6 @@ function nestedLoop(){
       circle(x,y,currentsize);
       fill(0);
       textAlign(CENTER,CENTER);
-      
       text(d,x,y);
     }
   }
