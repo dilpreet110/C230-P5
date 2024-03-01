@@ -6,7 +6,7 @@
 
 let rectHeight =  2;
 let circlesize = 20;
-let spacing = 40;
+let spacing = 20;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -29,11 +29,20 @@ function circleDistance(x1,y1,x2,y2){
 function nestedLoop(){
   for(let x=0;x<width;x+=spacing){
     for(let y=0;y<height;y+=spacing){
+      let d = round(circleDistance(x,y,mouseX,mouseY));
+      let currentsize = circlesize;
+      if(d>100){
+        fill(0);
+
+      }
+      else{
+        fill(255,0,0);
+      }
       fill(255);
-      circle(x,y,circlesize);
+      circle(x,y,currentsize);
       fill(0);
       textAlign(CENTER,CENTER);
-      let d = round(circleDistance(x,y,mouseX,mouseY));
+      
       text(d,x,y);
     }
   }
@@ -42,7 +51,7 @@ function nestedLoop(){
 function gradientBackground(){
   let y = 0;
   while(y<height){
-    let c = color(mouseX,map(y,0,height,0,255),map(mouseY,0,height,0,255));
+    let c = color(mouseX,map(y,0,height,0,255),map(y,0,height,0,255));
     fill(c);
 
     rect(0,y,width,rectHeight);
