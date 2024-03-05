@@ -18,14 +18,16 @@ function draw() {
   drawSquare();
 }
 
+function mouseClicked(){
+  overallSpacing +=10;
+}
 
 let overallSpacing = 20;
 
 function drawSquare(){
   let spacing = overallSpacing;
-  function mouseClicked(){
-    spacing +=10;
-  }
+
+  
   for(let x = 0; x<width;x+=spacing){
     for(let y = 0; y<height;y+=spacing){
       let colorIndex = floor(x / spacing) + floor(y / spacing*spacing);
