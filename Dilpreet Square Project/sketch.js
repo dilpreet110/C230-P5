@@ -7,9 +7,12 @@
 
 
 let colors = [];
+let overallSpacing = 20;
 
 function setup() {
   createCanvas(400, 400);
+  document.addEventListener("contextmenu", event => event.preventDefault());
+
 }  
 
 function draw() {
@@ -18,11 +21,19 @@ function draw() {
   drawSquare();
 }
 
-function mouseClicked(){
-  overallSpacing +=10;
+function mousePressed(){
+  if (mouseButton === RIGHT) {
+    overallSpacing += 5; 
+  } 
+  else if(mouseButton === LEFT && overallSpacing>10) {
+    overallSpacing -= 5; 
+  }
+  redraw();
 }
 
-let overallSpacing = 20;
+function keyPressed(){
+  location.reload();
+}
 
 function drawSquare(){
   let spacing = overallSpacing;
