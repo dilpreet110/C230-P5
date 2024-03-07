@@ -39,7 +39,8 @@ function moveBall(){
   ySpeed = random(-20,20);
 
   ballY += ySpeed;
-  circle(width*0.7,ballY,30);
+  circle(width*0.7,-10,30);
+  
 }
 
 function draw() {
