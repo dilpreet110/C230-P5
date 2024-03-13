@@ -11,6 +11,7 @@ let perlinXOffset = 0; // X offset for Perlin noise function
 let highestPeakX = 0; // X coordinate of the highest peak
 let highestPeakY = 0; // Y coordinate of the highest peak
 let averageHeight = 0; // Average height of the terrain
+let perlinXOffset2 = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -21,9 +22,11 @@ function setup() {
 function draw() {
   background(220);
   perlinXOffset += 0.01;
+  perlinXOffset2 += 0.02;
   
+
+  generateTerrain2();
   generateTerrain();
-  
   drawFlag(highestPeakX, highestPeakY);
 
   calculateAverageHeight();
@@ -42,6 +45,27 @@ function keyPressed() {
 }
 
 function generateTerrain() {
+  fill(0);
+  let xoff = perlinXOffset2;
+  let highest = 0;
+  highestPeakX = 0;
+  
+  for (let x = 0; x < width; x += rectWidth) {
+    let h = map(noise(xoff),0,1,0,height);
+    rect(x, height-h, rectWidth, h);
+    
+    // Update highest peak
+    if (h > highest) {
+      highest = h;
+      highestPeakX = x;
+      highestPeakY = height - h;
+    }
+    
+    xoff += 0.01; 
+  }
+}
+
+function generateTerrain2() {
   fill(0);
   let xoff = perlinXOffset;
   let highest = 0;
