@@ -45,7 +45,7 @@ function keyPressed() {
 }
 
 function generateTerrain() {
-  fill(0);
+  fill(165,42,42);
   let xoff = perlinXOffset2;
   let highest = 0;
   highestPeakX = 0;
@@ -66,6 +66,7 @@ function generateTerrain() {
 }
 
 function generateTerrain2() {
+  frameRate(400);
   fill(0);
   let xoff = perlinXOffset;
   let highest = 0;
