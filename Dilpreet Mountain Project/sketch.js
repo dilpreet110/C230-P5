@@ -1,9 +1,9 @@
-// Project Title
-// Your Name
-// Date
+// Mountain Project
+// Dilpreet Singh Sidhu
+// !4 March, 2024
 //
-// Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// Creating mountains and panning them , and finding average and highest point:
+// - Using perlin noise funcion and various loops.
 
 
 let rectWidth = 2; // Initial width of rectangles
@@ -45,7 +45,7 @@ function keyPressed() {
 }
 
 function generateTerrain() {
-  fill(165,42,42);
+  fill(82,125,243);
   let xoff = perlinXOffset2;
   let highest = 0;
   highestPeakX = 0;
