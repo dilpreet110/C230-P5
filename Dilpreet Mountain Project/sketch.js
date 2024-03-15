@@ -15,8 +15,7 @@ let perlinXOffset2 = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  frameRate(100);
-  //generateTerrain();
+  frameRate(100); //Adjust framerate 
 }
 
 function draw() {
@@ -26,8 +25,8 @@ function draw() {
   
 
   generateTerrain2();
-  generateTerrain();
-  drawFlag(highestPeakX, highestPeakY);
+  generateTerrain(); //Generate our mountains
+  drawFlag(highestPeakX, highestPeakY);  //Draw Flag
 
   calculateAverageHeight();
   drawAverageLine();
@@ -35,7 +34,7 @@ function draw() {
 
 function keyPressed() {
   if (keyCode === LEFT_ARROW) {
-    rectWidth -= 5; 
+    rectWidth -= 5;                          // Changing our rectWidth with realtion to Arrow keys and Redrawing using Generate Function 
     generateTerrain(); 
   } 
   else if (keyCode === RIGHT_ARROW) {
@@ -51,7 +50,7 @@ function generateTerrain() {
   highestPeakX = 0;
   
   for (let x = 0; x < width; x += rectWidth) {
-    let h = map(noise(xoff),0,1,0,height);
+    let h = map(noise(xoff),0,1,0,height);               // Basic Noise function that Mr. Scott taught us which would be used to create a firm randomness.
     rect(x, height-h, rectWidth, h);
     
     // Update highest peak
@@ -90,7 +89,7 @@ function generateTerrain2() {
 function drawFlag(x, y) {
   fill(0);
   line(x , y - 40, x, y);
-  fill(255, 0, 0);
+  fill(255, 0, 0);                                     // Basic shapes put together to make a flag
   triangle(x, y-20, x , y - 40, x + 20, y - 40);
   fill(0);
   line(x , y - 40, x, y);
