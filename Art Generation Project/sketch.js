@@ -1,9 +1,9 @@
-// Project Title
-// Your Name
-// Date
+// Art Replication Project
+// Dilpreet Singh Sidhu
+// 1 April , 2024
 //
 // Extra for Experts:
-// - describe what you did to take this project "above and beyond"
+// make amplitude like lines
 
 
 let amplitude = 20; // Define the amplitude of the wave
