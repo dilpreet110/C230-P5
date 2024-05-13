@@ -1,0 +1,28 @@
+
+Project Proposal: Dilpreet Singh Sidhu
+
+Premise:
+For my project, I plan to develop an arcade-style brick breaker game using p5.js references and other refernces available on internet. The game will involve a paddle, a ball, and bricks that the ball must break through. I chose this project because it's a classic game that offers a good balance of simplicity and complexity, making it suitable for implementation within the given timeframe.Throughout the project, I aim to learn more about game physics, collision detection, and user interaction.
+
+Features List:
+
+Required Features	                                     Desired Features
+Paddle that moves horizontally	                  Sound effects for collisions and actions
+Ball that bounces off walls and paddle   	Different levels with increasing difficulty
+Bricks that break upon collision with ball	Power-ups (e.g., paddle size increase, multi-ball)
+Score tracking and display	                Customizable paddle and ball appearance
+Lives tracking and game over condition
+High score leaderboard
+
+Milestone Timeline:
+
+Week 1: Set up project structure, create basic game layout with paddle, ball, and bricks.
+Week 2: Implement ball physics, collision detection with walls and paddle.
+Week 3: Add brick breaking functionality, score tracking, and lives system.
+Week 4: Integrate sound effects, design additional levels with increasing difficulty.
+Week 5: Implement power-ups and fine-tune game mechanics.
+Week 6: Polish user interface, optimize performance, and finalize project.
+
+Project Team:
+
+This project will be developed by me only.
