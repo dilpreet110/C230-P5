@@ -19,7 +19,7 @@ function setup() {
 }
 
 function draw() {
-  background(255);
+  background(0);
 }
 
 class Paddle {
@@ -32,7 +32,7 @@ class Paddle {
 
   show(){
     fill(138,236,255);
-    rect(this.pos.x , this.pos.y , this.width, this.height);  // come to it later
+    rect(this.pos.x , this.pos.y , this.width, this.height);
   }
 
   move(){
@@ -44,4 +44,38 @@ class Paddle {
     }
   }                 // Up and Down arrows for ball speed later and this.pos.y
 
+}
+
+class Ball{
+  constructor(x = width/2 , y = height/2){
+    this.pos = createVector(x,y);
+    this.radius = 10;
+    this.vel = createVector(random(-5,5),(-5,-2));
+  }
+
+  show(){
+    fill(255);
+    ellipse(this.pos.x,this.pos.y,this.radius*2);
+  }
+
+  move(){
+    this.pos.add(this.vel);
+    if(this.pos.x < this.radius || this.pos.x > width - this.radius){
+      this.vel.x *= -1;
+    }
+
+    if(this.pos.y < this.radius){
+      this.vel.y *= -1;
+    }
+  }
+
+  checkCollision(paddle){
+    if(this.pos.y > height - paddle.height - this.radius && this.pos.x > paddle.pos.x && this.pos.x < paddle.pos.x + paddle.width){
+      let angle = map(this.pos.x, paddle.pos.x, paddle.pos.x + paddle.width, -PI/4 , PI/4);
+      this.vel.x = 5*cos(angle);
+      this.vel.y = -5*sin(angle);
+    }
+  }
+
+  // make a function for hits brcik and continue from here                                          
 }
