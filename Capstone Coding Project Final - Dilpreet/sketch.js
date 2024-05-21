@@ -9,6 +9,11 @@ let BG;
 let paddle; 
 let balls = [];
 let bricks = [];
+let brickRowCount = 6;
+let brickColumnCount = 8;
+let brickWidth , brickHeight;
+let brickPadding = 10;
+//more variables will come here
 
 function preload(){
   BG = loadImage("assets/BG.jpg");
@@ -77,5 +82,8 @@ class Ball{
     }
   }
 
-  // make a function for hits brcik and continue from here                                          
+  hits(brick){
+    let d = dist(this.pos.x , this.pos.y , brick.pos.x + brick.width/2 , brick.pos.y + brick.height/2);
+    return d < this.radius + brick.width / 2;
+  }                                         
 }
