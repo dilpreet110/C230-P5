@@ -6,13 +6,22 @@
 // - describe what you did to take this project "above and beyond"
 
 let BG;
-let paddle; 
+let paddle;
 let balls = [];
 let bricks = [];
 let brickRowCount = 6;
 let brickColumnCount = 8;
-let brickWidth , brickHeight;
+let brickWidth, brickHeight;
 let brickPadding = 10;
+let brickOffsetTop = 30;
+let brickOffsetLeft = 30;
+let score = 0;
+let lives = 3;
+let powerUps = [];
+let paddleBlasters = false;
+let multiPaddle = false;
+let triplePaddles = [];
+let blasterCooldown = 0;
 //more variables will come here
 
 function preload(){
@@ -27,31 +36,51 @@ function draw() {
   background(0);
 }
 
+
 class Paddle {
-  constructor(){
-    this.width = windowWidth*0.1;
-    this.height = windowHeight*0.1;
-    this.pos = createVector(width/2 - this.width/2, height - this.height - 10);
+  constructor(x = width / 2 - 50) {
+    this.width = 100;
+    this.height = 20;
+    this.pos = createVector(x, height - this.height - 10);
     this.speed = 10;
   }
-
-  show(){
-    fill(138,236,255);
-    rect(this.pos.x , this.pos.y , this.width, this.height);
+  
+ 
+  show() {
+    fill(138, 236, 255);
+    rect(this.pos.x, this.pos.y, this.width, this.height);
   }
+  
 
-  move(){
-    if(keyIsDown(LEFT_ARROW)){
-      this.pos.x = constrain(this.pos.x - this.speed, 0 , width - this.width);
+  move() {
+    if (keyIsDown(LEFT_ARROW)) {
+      this.pos.x = constrain(this.pos.x - this.speed, 0, width - this.width);
+    } else if (keyIsDown(RIGHT_ARROW)) {
+      this.pos.x = constrain(this.pos.x + this.speed, 0, width - this.width);
     }
-    else if(keyIsDown(RIGHT_ARROW)){
-      this.pos.x = constrain(this.pos.x + this.speed, 0 , width - this.width);
+    
+    if (keyIsDown(UP_ARROW)) {
+      for (let ball of balls) {
+        ball.increaseSpeed();
+      }
+    } else if (keyIsDown(DOWN_ARROW)) {
+      for (let ball of balls) {
+        ball.decreaseSpeed();
+      }
     }
-  }                 // Up and Down arrows for ball speed later and this.pos.y
-
+    
+    if (paddleBlasters && keyIsDown(32) && blasterCooldown <= 0) { 
+      powerUps.push(new Blaster(this.pos.x + this.width / 2, this.pos.y));
+      blasterCooldown = 20; 
+    }
+    
+    if (blasterCooldown > 0) {
+      blasterCooldown--;
+    }
+  }
 }
 
-class Ball{
+class Ball{//Lot of work needed completely redefine all values and stuff
   constructor(x = width/2 , y = height/2){
     this.pos = createVector(x,y);
     this.radius = 10;
@@ -87,3 +116,5 @@ class Ball{
     return d < this.radius + brick.width / 2;
   }                                         
 }
+
+// We will create a new class Blaster which we defined in Paddle
