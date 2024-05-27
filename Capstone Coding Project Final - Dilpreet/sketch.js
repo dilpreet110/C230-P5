@@ -24,9 +24,7 @@ let triplePaddles = [];
 let blasterCooldown = 0;
 //more variables will come here
 
-function preload(){
-  BG = loadImage("assets/BG.jpg");
-}
+
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -55,7 +53,8 @@ class Paddle {
   move() {
     if (keyIsDown(LEFT_ARROW)) {
       this.pos.x = constrain(this.pos.x - this.speed, 0, width - this.width);
-    } else if (keyIsDown(RIGHT_ARROW)) {
+    } 
+    else if (keyIsDown(RIGHT_ARROW)) {
       this.pos.x = constrain(this.pos.x + this.speed, 0, width - this.width);
     }
     
@@ -63,7 +62,8 @@ class Paddle {
       for (let ball of balls) {
         ball.increaseSpeed();
       }
-    } else if (keyIsDown(DOWN_ARROW)) {
+    }
+    else if (keyIsDown(DOWN_ARROW)) {
       for (let ball of balls) {
         ball.decreaseSpeed();
       }
@@ -80,41 +80,47 @@ class Paddle {
   }
 }
 
-class Ball{//Lot of work needed completely redefine all values and stuff
-  constructor(x = width/2 , y = height/2){
-    this.pos = createVector(x,y);
+class Ball{//we need to create a fucntion that bounces the ball towards a brick tommorow continue from bounce(brick).
+  constructor(x = width / 2, y = height / 2) {
+    this.pos = createVector(x, y);
     this.radius = 10;
-    this.vel = createVector(random(-5,5),(-5,-2));
+    this.vel = createVector(random(-5, 5), random(-5, -2));
+    this.passThrough = false;
   }
+  
 
-  show(){
-    fill(255);
-    ellipse(this.pos.x,this.pos.y,this.radius*2);
+  show() {
+    fill(138, 236, 255);
+    ellipse(this.pos.x, this.pos.y, this.radius * 2);
   }
+  
 
-  move(){
+  move() {
     this.pos.add(this.vel);
-    if(this.pos.x < this.radius || this.pos.x > width - this.radius){
+    if (this.pos.x < this.radius || this.pos.x > width - this.radius) {
       this.vel.x *= -1;
     }
-
-    if(this.pos.y < this.radius){
+    if (this.pos.y < this.radius) {
       this.vel.y *= -1;
     }
   }
-
-  checkCollision(paddle){
-    if(this.pos.y > height - paddle.height - this.radius && this.pos.x > paddle.pos.x && this.pos.x < paddle.pos.x + paddle.width){
-      let angle = map(this.pos.x, paddle.pos.x, paddle.pos.x + paddle.width, -PI/4 , PI/4);
-      this.vel.x = 5*cos(angle);
-      this.vel.y = -5*sin(angle);
+  
+ 
+  checkCollision(paddle) {
+    if (this.pos.y > height - paddle.height - this.radius &&
+        this.pos.x > paddle.pos.x &&
+        this.pos.x < paddle.pos.x + paddle.width) {
+      let angle = map(this.pos.x, paddle.pos.x, paddle.pos.x + paddle.width, -PI / 4, PI / 4);
+      this.vel.x = 5 * cos(angle);
+      this.vel.y = -5 * sin(angle);
     }
   }
+  
 
-  hits(brick){
-    let d = dist(this.pos.x , this.pos.y , brick.pos.x + brick.width/2 , brick.pos.y + brick.height/2);
+  hits(brick) {
+    let d = dist(this.pos.x, this.pos.y, brick.pos.x + brick.width / 2, brick.pos.y + brick.height / 2);
     return d < this.radius + brick.width / 2;
-  }                                         
+  }                                        
 }
 
-// We will create a new class Blaster which we defined in Paddle
+// We will create a new class Blaster which we defined in Paddle . Shifted to another day physics needed
