@@ -80,7 +80,7 @@ class Paddle {
   }
 }
 
-class Ball{//we need to create a fucntion that bounces the ball towards a brick tommorow continue from bounce(brick).
+class Ball{
   constructor(x = width / 2, y = height / 2) {
     this.pos = createVector(x, y);
     this.radius = 10;
@@ -120,7 +120,33 @@ class Ball{//we need to create a fucntion that bounces the ball towards a brick 
   hits(brick) {
     let d = dist(this.pos.x, this.pos.y, brick.pos.x + brick.width / 2, brick.pos.y + brick.height / 2);
     return d < this.radius + brick.width / 2;
-  }                                        
+  }  
+  
+
+  bounce(brick) {
+    if (!this.passThrough) {
+      if (this.pos.y < brick.pos.y || this.pos.y > brick.pos.y + brick.height) {
+        this.vel.y *= -1;
+      } 
+      else {
+        this.vel.x *= -1;
+      }
+    }
+  }
+  
+  increaseSpeed() {
+    this.vel.mult(1.1);
+  }
+  
+
+  decreaseSpeed() {
+    this.vel.mult(0.9);
+  }
+  
+
+  increaseSize() {
+    this.radius *= 1.5;
+  }
 }
 
-// We will create a new class Blaster which we defined in Paddle . Shifted to another day physics needed
+// We will create a new class Blaster which we defined in Paddle . Shifted to tomorrow
