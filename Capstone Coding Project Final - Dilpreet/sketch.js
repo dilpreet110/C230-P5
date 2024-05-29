@@ -34,6 +34,7 @@ function draw() {
   background(0);
 }
 
+// Create a create brick function to 
 
 class Paddle {
   constructor(x = width / 2 - 50) {
@@ -146,6 +147,40 @@ class Ball{
 
   increaseSize() {
     this.radius *= 1.5;
+  }
+}
+
+class Brick {
+  constructor(x, y, w, h, special = null) {
+    this.pos = createVector(x, y);
+    this.width = w;
+    this.height = h;
+    this.special = special;
+  }
+  
+  show() {
+    if (this.special === 'speed') {
+      fill(255, 165, 0);
+    } 
+    else if (this.special === 'double') {
+      fill(0, 255, 0);
+    }
+    else if (this.special === 'passThrough') {
+      fill(0, 0, 255);
+    } 
+    else if (this.special === 'largeBall') {
+      fill(255, 0, 255);
+    } 
+    else if (this.special === 'blaster') {
+      fill(255, 255, 0);
+    } 
+    else if (this.special === 'multiPaddle') {
+      fill(255, 192, 203);
+    }
+    else {
+      fill(255, 0, 0);
+    }
+    rect(this.pos.x, this.pos.y, this.width, this.height);
   }
 }
 
