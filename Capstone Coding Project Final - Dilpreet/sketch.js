@@ -26,6 +26,7 @@ let blasterCooldown = 0;
 
 
 
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
@@ -34,7 +35,30 @@ function draw() {
   background(0);
 }
 
-// Create a create brick function to 
+// we will create a lose life function tommorow
+
+function createBricks() {
+  brickWidth = (width - 2 * brickOffsetLeft) / brickColumnCount - brickPadding;
+  brickHeight = 30;
+  for (let i = 0; i < brickColumnCount; i++) {
+    for (let j = 0; j < brickRowCount; j++) {
+      let x = i * (brickWidth + brickPadding) + brickOffsetLeft;
+      let y = j * (brickHeight + brickPadding) + brickOffsetTop;
+      let special = random() > 0.9 ? (random() > 0.5 ? 'speed' : 'double') : null;
+      let chance = random();
+      if (chance > 0.95) {
+        special = 'passThrough';
+      } else if (chance > 0.9) {
+        special = 'largeBall';
+      } else if (chance > 0.85) {
+        special = 'blaster';
+      } else if (chance > 0.8) {
+        special = 'multiPaddle';
+      }
+      bricks.push(new Brick(x, y, brickWidth, brickHeight, special));
+    }
+  }
+}
 
 class Paddle {
   constructor(x = width / 2 - 50) {
@@ -184,4 +208,4 @@ class Brick {
   }
 }
 
-// We will create a new class Blaster which we defined in Paddle . Shifted to tomorrow
+// We will create a new class Blaster which we defined in Paddle . Shifted to definitely tomorrow
