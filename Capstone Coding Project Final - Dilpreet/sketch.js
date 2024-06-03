@@ -208,4 +208,23 @@ class Brick {
   }
 }
 
-// We will create a new class Blaster which we defined in Paddle . Shifted to definitely tomorrow
+class Blaster{
+  constructor(x, y) {
+    this.pos = createVector(x, y);
+    this.vel = createVector(0, -5);
+    this.radius = 5;
+  }
+
+  show() {
+    fill(255, 255, 0);
+    ellipse(this.pos.x, this.pos.y, this.radius * 2);
+    this.move();
+  }
+  
+  move() {
+    this.pos.add(this.vel);
+  }
+
+  // 
+}
+
