@@ -225,6 +225,9 @@ class Blaster{
     this.pos.add(this.vel);
   }
 
-  // 
+  hits(brick) {
+    let d = dist(this.pos.x, this.pos.y, brick.pos.x + brick.width / 2, brick.pos.y + brick.height / 2);
+    return d < this.radius + brick.width / 2;
+  }
 }
 
