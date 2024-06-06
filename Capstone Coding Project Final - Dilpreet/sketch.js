@@ -22,20 +22,23 @@ let paddleBlasters = false;
 let multiPaddle = false;
 let triplePaddles = [];
 let blasterCooldown = 0;
-//more variables will come here
 
 
-
+// work needed in draw() column;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  paddle = new Paddle();
+  createBricks();
+  balls.push(new Ball());
 }
 
 function draw() {
   background(0);
-}
 
-// we will create a lose life function tommorow
+  paddle.show();
+  paddle.move();
+}
 
 function createBricks() {
   brickWidth = (width - 2 * brickOffsetLeft) / brickColumnCount - brickPadding;
@@ -58,6 +61,11 @@ function createBricks() {
       bricks.push(new Brick(x, y, brickWidth, brickHeight, special));
     }
   }
+}
+
+function loseLife() {
+  lives--;
+  balls = [new Ball()];
 }
 
 class Paddle {
