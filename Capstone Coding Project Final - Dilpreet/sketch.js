@@ -38,6 +38,23 @@ function draw() {
 
   paddle.show();
   paddle.move();
+
+  if (multiPaddle) {
+    for (let p of triplePaddles) {
+      p.show();
+    }
+  }
+
+  for (let ball of balls) {
+    ball.show();
+    ball.move();
+    ball.checkCollision(paddle);
+    if (multiPaddle) {
+      for (let p of triplePaddles) {
+        ball.checkCollision(p);
+      }
+    }
+  }
 }
 
 function createBricks() {
@@ -70,7 +87,7 @@ function loseLife() {
 
 class Paddle {
   constructor(x = width / 2 - 50) {
-    this.width = 100;
+    this.width = windowWidth*0.15;
     this.height = 20;
     this.pos = createVector(x, height - this.height - 10);
     this.speed = 10;
