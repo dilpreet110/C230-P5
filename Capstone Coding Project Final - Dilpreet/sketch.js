@@ -85,6 +85,14 @@ function loseLife() {
   balls = [new Ball()];
 }
 
+function gameOver() {
+  textSize(32);
+  fill(255);
+  textAlign(CENTER, CENTER);
+  text('Game Over!', width / 2, height / 2);
+  noLoop();
+}
+
 class Paddle {
   constructor(x = width / 2 - 50) {
     this.width = windowWidth*0.15;
