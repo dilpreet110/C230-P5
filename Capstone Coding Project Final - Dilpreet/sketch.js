@@ -23,9 +23,6 @@ let multiPaddle = false;
 let triplePaddles = [];
 let blasterCooldown = 0;
 
-
-// work needed in draw() column;
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
   paddle = new Paddle();
@@ -55,6 +52,8 @@ function draw() {
       }
     }
   }
+
+  
 }
 
 function createBricks() {
@@ -64,16 +63,16 @@ function createBricks() {
     for (let j = 0; j < brickRowCount; j++) {
       let x = i * (brickWidth + brickPadding) + brickOffsetLeft;
       let y = j * (brickHeight + brickPadding) + brickOffsetTop;
-      let special = random() > 0.9 ? (random() > 0.5 ? 'speed' : 'double') : null;
+      let special = random() > 0.9 ? (random() > 0.5 ? "speed" : "double") : null;
       let chance = random();
       if (chance > 0.95) {
-        special = 'passThrough';
+        special = "passThrough";
       } else if (chance > 0.9) {
-        special = 'largeBall';
+        special = "largeBall";
       } else if (chance > 0.85) {
-        special = 'blaster';
+        special = "blaster";
       } else if (chance > 0.8) {
-        special = 'multiPaddle';
+        special = "multiPaddle";
       }
       bricks.push(new Brick(x, y, brickWidth, brickHeight, special));
     }
@@ -89,8 +88,29 @@ function gameOver() {
   textSize(32);
   fill(255);
   textAlign(CENTER, CENTER);
-  text('Game Over!', width / 2, height / 2);
+  text("Game Over!", width / 2, height / 2);
   noLoop();
+}
+
+function levelComplete() {
+  textSize(32);
+  fill(255);
+  textAlign(CENTER, CENTER);
+  text("Level Complete!", width / 2, height / 2);
+  noLoop();
+}
+
+function activateMultiPaddle() {
+  multiPaddle = true;
+  triplePaddles = [
+    new Paddle(paddle.pos.x - 120),
+    new Paddle(paddle.pos.x),
+    new Paddle(paddle.pos.x + 120)
+  ];
+  setTimeout(() => {
+    multiPaddle = false;
+    triplePaddles = [];
+  }, 10000);
 }
 
 class Paddle {
@@ -216,22 +236,22 @@ class Brick {
   }
   
   show() {
-    if (this.special === 'speed') {
+    if (this.special === "speed") {
       fill(255, 165, 0);
     } 
-    else if (this.special === 'double') {
+    else if (this.special === "double") {
       fill(0, 255, 0);
     }
-    else if (this.special === 'passThrough') {
+    else if (this.special === "passThrough") {
       fill(0, 0, 255);
     } 
-    else if (this.special === 'largeBall') {
+    else if (this.special === "largeBall") {
       fill(255, 0, 255);
     } 
-    else if (this.special === 'blaster') {
+    else if (this.special === "blaster") {
       fill(255, 255, 0);
     } 
-    else if (this.special === 'multiPaddle') {
+    else if (this.special === "multiPaddle") {
       fill(255, 192, 203);
     }
     else {
